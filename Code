@@ -1,4 +1,3 @@
-import typing
 def binary_search(target1: int,listik1: list[int]):
     '''
     Алгоритм бинарного поиска
@@ -10,9 +9,8 @@ def binary_search(target1: int,listik1: list[int]):
     high = len(listik1) - 1
     mid = len(listik1) // 2
     count_attempts=1
-
     if listik1[mid] == target1:
-        print('Искомое число:',listik1[mid],'Количество попыток:',count_attempts)
+        return listik1[mid], count_attempts
     else:
         while listik1[mid] != target1 and low <= high:
             if target1 > listik1[mid]:
@@ -22,9 +20,9 @@ def binary_search(target1: int,listik1: list[int]):
             mid = (low + high) // 2
             count_attempts+=1
             if listik1[mid]==target1:
-                print('Искомое число:',listik1[mid],'Количество попыток:',count_attempts)
+                return listik1[mid], count_attempts
     if low > high:
-        print('число не найдено')
+        return 'Число не найдено'
 def slow_search(target2:int,listik2: list[int]):
     '''
     Алгоритм медленного перебора
@@ -40,14 +38,10 @@ def slow_search(target2:int,listik2: list[int]):
         nownumber = listik2[i]
         count_attempts+=1
         if nownumber==target2:
-            print('Искомое число:',nownumber,'Количество попыток:',count_attempts)
+            return nownumber, count_attempts
             check=1
     if check==0:
-        print('Число не найдено')
-    
-            
-
-    
+        return 'Число не найдено'
 def guess_number(target: int,listik: list[int],method:str):
     '''
     Используя выбранный алгоритм, отгадывает число.
@@ -57,10 +51,9 @@ def guess_number(target: int,listik: list[int],method:str):
         method(str): Алгоритм, который будет использоваться для поиска загаданного числа. Или binary_search или slow_search.
     '''
     if method=='binary_search':
-        binary_search(target,listik)
+        return binary_search(target,listik)
 
     elif method=="slow_search":
-        slow_search(target,listik)
+        return slow_search(target,listik)
     else:
-        print('Введён неправильный метод поиска.')
-    return ''
+        return 'Введён неправильный метод поиска.'
