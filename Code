@@ -1,1 +1,66 @@
+import typing
+def binary_search(target1: int,listik1: list[int]):
+    '''
+    Алгоритм бинарного поиска
+    Args:
+        target1(int): Число, которое нужно угадать.
+        listik1(list): Диапазон чисел. '''
+    listik1=sorted(listik1)
+    low = 0
+    high = len(listik1) - 1
+    mid = len(listik1) // 2
+    count_attempts=1
 
+    if listik1[mid] == target1:
+        print('Искомое число:',listik1[mid],'Количество попыток:',count_attempts)
+    else:
+        while listik1[mid] != target1 and low <= high:
+            if target1 > listik1[mid]:
+                low = mid + 1
+            else:
+                high = mid - 1
+            mid = (low + high) // 2
+            count_attempts+=1
+            if listik1[mid]==target1:
+                print('Искомое число:',listik1[mid],'Количество попыток:',count_attempts)
+    if low > high:
+        print('число не найдено')
+def slow_search(target2:int,listik2: list[int]):
+    '''
+    Алгоритм медленного перебора
+    Args:
+        target2(int): Число, которое нужно угадать.
+        listik2(list): Диапазон чисел. 
+    '''
+    listik2=sorted(listik2)
+    nownumber=listik2[0]
+    count_attempts=0
+    check=0
+    for i in range(len(listik2)):
+        nownumber = listik2[i]
+        count_attempts+=1
+        if nownumber==target2:
+            print('Искомое число:',nownumber,'Количество попыток:',count_attempts)
+            check=1
+    if check==0:
+        print('Число не найдено')
+    
+            
+
+    
+def guess_number(target: int,listik: list[int],method:str):
+    '''
+    Используя выбранный алгоритм, отгадывает число.
+    Args:
+        target(int): Число, которое нужно угадать.
+        listik(list): Диапазон чисел.
+        method(str): Алгоритм, который будет использоваться для поиска загаданного числа. Или binary_search или slow_search.
+    '''
+    if method=='binary_search':
+        binary_search(target,listik)
+
+    elif method=="slow_search":
+        slow_search(target,listik)
+    else:
+        print('Введён неправильный метод поиска.')
+    return ''
